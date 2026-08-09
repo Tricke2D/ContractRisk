@@ -1,0 +1,6 @@
+#!C:\Users\dio.alif\PycharmProjects\ContractRisk\.venv\Scripts\python.exe
+import sys
+from contract_risk_auditor.main import main
+
+if __name__ == '__main__':
+    sys.exit(main())
