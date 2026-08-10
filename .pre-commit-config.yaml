@@ -6,11 +6,9 @@ repos:
         args: [--fix]
       - id: ruff-format
 
-  - repo: local
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0
     hooks:
       - id: mypy
-        name: mypy
-        entry: mypy src/
-        language: system
-        pass_filenames: false
-        types: [python]
+        args: [--ignore-missing-imports, --follow-imports=skip]
+        additional_dependencies: [types-all]

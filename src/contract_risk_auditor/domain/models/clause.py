@@ -12,16 +12,24 @@ from sqlalchemy.orm import relationship
 from contract_risk_auditor.core.database import Base
 
 
-class Clause(Base):
+class Clause(Base):  # type: ignore[misc]
     __tablename__ = "clauses"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    contract_id = Column(UUID(as_uuid=True), ForeignKey("contracts.id", ondelete="CASCADE"), nullable=False)
+    contract_id = Column(
+        UUID(as_uuid=True), ForeignKey("contracts.id", ondelete="CASCADE"), nullable=False
+    )
     section_number = Column(String(64), nullable=True)
     clause_text = Column(Text, nullable=False)
     clause_type = Column(String(100), nullable=True)
     page_number = Column(Integer, nullable=True)
     created_at = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow)
-    updated_at = Column(DateTime(timezone=True), nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at = Column(
+        DateTime(timezone=True), nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow
+    )
 
-    contract = relationship("Contract", backref="clauses")
+    contract = relationship("Contract", back_populates="clauses")
+    risks = relationship("ClauseRisk", back_populates="clause", cascade="all, delete-orphan")
+    redline_suggestions = relationship(
+        "RedlineSuggestion", back_populates="clause", cascade="all, delete-orphan"
+    )

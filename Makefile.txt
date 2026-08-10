@@ -1,0 +1,40 @@
+.PHONY: up down logs build test lint format migrate seed-playbook help
+
+up:
+	docker compose -f docker/docker-compose.yml up -d
+
+down:
+	docker compose -f docker/docker-compose.yml down
+
+logs:
+	docker compose -f docker/docker-compose.yml logs -f
+
+build:
+	poetry install
+
+test:
+	poetry run pytest tests/ -v
+
+lint:
+	poetry run ruff check src/
+
+format:
+	poetry run ruff format src/
+
+migrate:
+	poetry run alembic upgrade head
+
+seed-playbook:
+	poetry run python scripts/seed_playbook.py
+
+help:
+	@echo "Available commands:"
+	@echo "  up              - Start Docker containers"
+	@echo "  down            - Stop Docker containers"
+	@echo "  logs            - View container logs"
+	@echo "  build           - Install dependencies"
+	@echo "  test            - Run tests"
+	@echo "  lint            - Run linter"
+	@echo "  format          - Format code"
+	@echo "  migrate         - Run database migrations"
+	@echo "  seed-playbook   - Seed playbook data"
