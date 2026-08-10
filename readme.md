@@ -126,75 +126,75 @@ Implementasi **AI-powered contract analysis engine** dengan hybrid risk scoring 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    Contract Risk Auditor System                     │
-│                                                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │                     Frontend (React + TS)                    │   │
-│  │                                                              │   │
-│  │  ┌─────────────────────────────────────────────────────┐   │   │
-│  │  │  Upload Dropzone                                    │   │   │
-│  │  │  • Drag & drop PDF/TXT                              │   │   │
-│  │  │  • Party name input                                 │   │   │
-│  │  └─────────────────────────────────────────────────────┘   │   │
-│  │                                                              │   │
-│  │  ┌─────────────────────────────────────────────────────┐   │   │
-│  │  │  Dashboard                                          │   │   │
-│  │  │  • Risk Summary (LOW/MEDIUM/HIGH/Needs Review)      │   │   │
-│  │  │  • Clause list with risk badges                     │   │   │
-│  │  │  • Deviation reasons                                │   │   │
-│  │  └─────────────────────────────────────────────────────┘   │   │
-│  │                                                              │   │
-│  │  ┌─────────────────────────────────────────────────────┐   │   │
-│  │  │  Redline Review Panel                               │   │   │
-│  │  │  • Diff view (original vs suggested)                │   │   │
-│  │  │  • Variant selector (conservative/assertive)        │   │   │
-│  │  │  • Approve/Reject with notes                        │   │   │
-│  │  └─────────────────────────────────────────────────────┘   │   │
-│  │                                                              │   │
-│  └──────────────────────────┬──────────────────────────────────┘   │
-│                              │  REST API (HTTP)                    │
-│                              ▼                                    │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │                     Backend (FastAPI + Python)               │   │
-│  │                                                              │   │
-│  │  ┌─────────────────────────────────────────────────────┐   │   │
-│  │  │  API Routers                                        │   │   │
-│  │  │  • contracts_router (upload, ingest)                │   │   │
-│  │  │  • report_router (aggregated report)                │   │   │
-│  │  │  • redlines_router (approve/reject/regenerate)      │   │   │
-│  │  └─────────────────────────────────────────────────────┘   │   │
-│  │                                                              │   │
-│  │  ┌─────────────────────────────────────────────────────┐   │   │
-│  │  │  Services                                           │   │   │
-│  │  │  • Clause Segmentation (regex + LLM)                │   │   │
-│  │  │  • Clause Classification (LLM)                      │   │   │
-│  │  │  • Deviation Analysis (LLM)                         │   │   │
-│  │  │  • Risk Scoring (rule + LLM)                        │   │   │
-│  │  │  • Redline Generation (LLM + self-critique)         │   │   │
-│  │  └─────────────────────────────────────────────────────┘   │   │
-│  │                                                              │   │
-│  │  ┌─────────────────────────────────────────────────────┐   │   │
-│  │  │  Repositories (SQLAlchemy)                          │   │   │
-│  │  │  • Contracts, Clauses, ClauseRisks                  │   │   │
-│  │  │  • PlaybookStandards (pgvector)                     │   │   │
-│  │  │  • RedlineSuggestions                               │   │   │
-│  │  └─────────────────────────────────────────────────────┘   │   │
-│  │                                                              │   │
-│  └──────────────────────────┬──────────────────────────────────┘   │
-│                              │                                    │
-│  ┌──────────────────────────▼──────────────────────────────────┐   │
-│  │                     Ollama (Local LLM)                      │   │
-│  │  • Llama 3.1 8B (classification, reasoning)                │   │
-│  │  • nomic-embed-text (embedding for pgvector)               │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-│                              │                                    │
-│  ┌──────────────────────────▼──────────────────────────────────┐   │
-│  │                     PostgreSQL (pgvector)                    │   │
-│  │  • Contract metadata                                         │   │
-│  │  • Clause text + classification                              │   │
-│  │  • Playbook standards + embeddings                           │   │
-│  │  • Risk scores + redlines                                    │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-│                                                                      │
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐    │
+│  │                     Frontend (React + TS)                   │    │
+│  │                                                             │    │
+│  │  ┌─────────────────────────────────────────────────────┐    │    │
+│  │  │  Upload Dropzone                                    │    │    │
+│  │  │  • Drag & drop PDF/TXT                              │    │    │
+│  │  │  • Party name input                                 │    │    │
+│  │  └─────────────────────────────────────────────────────┘    │    │
+│  │                                                             │    │
+│  │  ┌─────────────────────────────────────────────────────┐    │    │ 
+│  │  │  Dashboard                                          │    │    │
+│  │  │  • Risk Summary (LOW/MEDIUM/HIGH/Needs Review)      │    │    │
+│  │  │  • Clause list with risk badges                     │    │    │
+│  │  │  • Deviation reasons                                │    │    │
+│  │  └─────────────────────────────────────────────────────┘    │    │
+│  │                                                             │    │
+│  │  ┌─────────────────────────────────────────────────────┐    │    │
+│  │  │  Redline Review Panel                               │    │    │
+│  │  │  • Diff view (original vs suggested)                │    │    │
+│  │  │  • Variant selector (conservative/assertive)        │    │    │
+│  │  │  • Approve/Reject with notes                        │    │    │
+│  │  └─────────────────────────────────────────────────────┘    │    │
+│  │                                                             │    │
+│  └──────────────────────────┬──────────────────────────────────┘    │
+│                             │  REST API (HTTP)                      │
+│                             ▼                                       │
+│  ┌─────────────────────────────────────────────────────────────┐    │
+│  │                     Backend (FastAPI + Python)              │    │
+│  │                                                             │    │
+│  │  ┌─────────────────────────────────────────────────────┐    │    │
+│  │  │  API Routers                                        │    │    │
+│  │  │  • contracts_router (upload, ingest)                │    │    │
+│  │  │  • report_router (aggregated report)                │    │    │
+│  │  │  • redlines_router (approve/reject/regenerate)      │    │    │
+│  │  └─────────────────────────────────────────────────────┘    │    │
+│  │                                                             │    │
+│  │  ┌─────────────────────────────────────────────────────┐    │    │
+│  │  │  Services                                           │    │    │
+│  │  │  • Clause Segmentation (regex + LLM)                │    │    │
+│  │  │  • Clause Classification (LLM)                      │    │    │
+│  │  │  • Deviation Analysis (LLM)                         │    │    │
+│  │  │  • Risk Scoring (rule + LLM)                        │    │    │
+│  │  │  • Redline Generation (LLM + self-critique)         │    │    │
+│  │  └─────────────────────────────────────────────────────┘    │    │
+│  │                                                             │    │
+│  │  ┌─────────────────────────────────────────────────────┐    │    │
+│  │  │  Repositories (SQLAlchemy)                          │    │    │
+│  │  │  • Contracts, Clauses, ClauseRisks                  │    │    │
+│  │  │  • PlaybookStandards (pgvector)                     │    │    │
+│  │  │  • RedlineSuggestions                               │    │    │
+│  │  └─────────────────────────────────────────────────────┘    │    │
+│  │                                                             │    │
+│  └──────────────────────────┬──────────────────────────────────┘    │
+│                             │                                       │
+│  ┌──────────────────────────▼──────────────────────────────────┐    │
+│  │                     Ollama (Local LLM)                      │    │
+│  │  • Llama 3.1 8B (classification, reasoning)                 │    │
+│  │  • nomic-embed-text (embedding for pgvector)                │    │
+│  └─────────────────────────────────────────────────────────────┘    │
+│                             │                                       │
+│  ┌──────────────────────────▼──────────────────────────────────┐    │
+│  │                     PostgreSQL (pgvector)                   │    │
+│  │  • Contract metadata                                        │    │
+│  │  • Clause text + classification                             │    │
+│  │  • Playbook standards + embeddings                          │    │
+│  │  • Risk scores + redlines                                   │    │
+│  └─────────────────────────────────────────────────────────────┘    │
+│                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -204,28 +204,28 @@ Implementasi **AI-powered contract analysis engine** dengan hybrid risk scoring 
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ 1. User Uploads Contract (PDF/TXT)                         │
+│ 1. User Uploads Contract (PDF/TXT)                           │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
-│ Frontend → POST /contracts/upload (file + party_name)      │
+│ Frontend → POST /contracts/upload (file + party_name)        │
 │ ↓                                                            │
-│ Backend: Read file → Extract text (page by page)           │
+│ Backend: Read file → Extract text (page by page)             │
 │ ↓                                                            │
-│ For each page:                                              │
-│   → split_into_clauses (regex + LLM fallback)              │
-│   → classify_clause_type (LLM)                             │
-│   → embed clause_text (nomic-embed-text)                   │
-│   → find_most_similar_standard (pgvector)                  │
-│   → analyze_deviation (LLM)                                │
-│   → score_clause_risk (rule + LLM)                         │
+│ For each page:                                               │
+│   → split_into_clauses (regex + LLM fallback)                │
+│   → classify_clause_type (LLM)                               │
+│   → embed clause_text (nomic-embed-text)                     │
+│   → find_most_similar_standard (pgvector)                    │
+│   → analyze_deviation (LLM)                                  │
+│   → score_clause_risk (rule + LLM)                           │
 │ ↓                                                            │
-│ Save: Contracts → Clauses → ClauseRisks                     │
+│ Save: Contracts → Clauses → ClauseRisks                      │
 │ ↓                                                            │
-│ Return: {contract_id: "..."}                                │
+│ Return: {contract_id: "..."}                                 │
 │ ↓                                                            │
-│ Frontend → GET /contracts/{id}/report                      │
+│ Frontend → GET /contracts/{id}/report                        │
 │ ↓                                                            │
-│ Display: Risk Summary + Clauses + Risks                     │
+│ Display: Risk Summary + Clauses + Risks                      │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -234,21 +234,21 @@ Implementasi **AI-powered contract analysis engine** dengan hybrid risk scoring 
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ 2. Redline Generation (HIGH Risk Clauses)                   │
+│ 2. Redline Generation (HIGH Risk Clauses)                    │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
-│ Backend: For each HIGH risk clause:                         │
-│   → generate_redline_variants (LLM)                        │
-│   → conservative variant (minimal change)                   │
-│   → assertive variant (full standard alignment)             │
-│   → critique_redline (self-review as independent reviewer)  │
-│   → If critique fails → retry once                         │
-│   → If still fails → flag needs_review = true              │
+│ Backend: For each HIGH risk clause:                          │
+│   → generate_redline_variants (LLM)                          │
+│   → conservative variant (minimal change)                    │
+│   → assertive variant (full standard alignment)              │
+│   → critique_redline (self-review as independent reviewer)   │
+│   → If critique fails → retry once                           │
+│   → If still fails → flag needs_review = true                │
 │ ↓                                                            │
-│ Save: RedlineSuggestions (variant_label, text, rationale)  │
+│ Save: RedlineSuggestions (variant_label, text, rationale)    │
 │ ↓                                                            │
-│ Frontend → GET /contracts/{id}/report                      │
-│   → Display redlines in review panel                        │
+│ Frontend → GET /contracts/{id}/report                        │
+│   → Display redlines in review panel                         │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
